@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* Add CSS styling for the table */
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <table id="test-case-table">
+      <tr>
+        <th>Test Case</th>
+        <th>Input</th>
+        <th>Expected Output</th>
+        <th>Actions</th>
+      </tr>
+    </table>
+
+    <button onclick="addTestCase()">Add Test Case</button>
+
+    <script>
+      // Add a new row to the table with input fields for test case, input, and expected output
+      function addTestCase() {
+        var table = document.getElementById("test-case-table");
+        var row = table.insertRow(-1);
+        var testCaseCell = row.insertCell(0);
+        var inputCell = row.insertCell(1);
+        var outputCell = row.insertCell(2);
+        var actionsCell = row.insertCell(3);
+
+        testCaseCell.innerHTML = "<input type='text' placeholder='Test Case Name'>";
+        inputCell.innerHTML = "<input type='text' placeholder='Input'>";
+        outputCell.innerHTML = "<input type='text' placeholder='Expected Output'>";
+        actionsCell.innerHTML = "<button onclick='deleteRow(this)'>Delete</button> <button onclick='saveData(this)'>Save</button>";
+      }
+
+      // Delete the row containing the button that was clicked
+      function deleteRow(btn) {
+        var row = btn.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+      }
+
+      // Save the data in the row containing the button that was clicked
+      function saveData(btn) {
+        var row = btn.parentNode.parentNode;
+        var testCase = row.cells[0].children[0].value;
+        var input = row.cells[1].children[0].value;
+        var output = row.cells[2].children[0].value;
+        console.log("Test Case: " + testCase + ", Input: " + input + ", Expected Output: " + output);
+        // You can add your own code here to send the data to a server or store it in a database
+      }
+    </script>
+  </body>
+</html>
